@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/addons/p5.sound.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+
+        * {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 8em;
+        }
+
+        #f {
+            font-size: 5em;
+        }
+    </style>
+</head>
+<body>
+    <!-- <h1></h1>
+    <p><span id="f"></span></p> -->
+    <main>
+
+    </main>
+    <script>
+        /* let t = document.querySelector('h1');
+
+        t.innerHTML = 'Hello'
+
+        let red = Math.ceil(Math.random()*255);
+        let green = Math.ceil(Math.random()*255);
+        let blue = Math.ceil(Math.random()*255);
+        let color = `rgb(${red},${green},${blue})`;
+        let body = document.body;
+        body.style.backgroundColor = color;
+
+        let f = 0;
+        let fTxt;
+
+        function anime() {
+            f++;
+            fTxt = document.getElementById('f');
+            window.requestAnimationFrame(anime);
+            fTxt.innerHTML = f;
+        }
+        anime(); */
+        /* let f = 0;
+        function setup() {
+            createCanvas(window.innerWidth, window.innerHeight);
+            let red = Math.ceil(Math.random()*255);
+            let green = Math.ceil(Math.random()*255);
+            let blue = Math.ceil(Math.random()*255);
+            let color = `rgb(${red},${green},${blue})`;
+            background(color);
+            noFill();
+            red = Math.ceil(Math.random()*255);
+            green = Math.ceil(Math.random()*255);
+            blue = Math.ceil(Math.random()*255);
+            color = `rgb(${red},${green},${blue})`;
+            stroke(color);
+            strokeWeight(a = 2);
+            pos1x = random(width);
+            pos2x = random(width);
+            pos1y = random(height);
+            pos2y = random(height);
+        }
+        function draw() {
+            f++;
+            //circle(pos1x, pos1y, f * a * 25);
+            //circle(pos2x, pos2y, f * a * 50); 
+            circle(0, 0, f * a * 10);
+            circle(0, height, f * a * 10);
+            circle(width, 0, f * a * 10);
+            circle(width, height, f * a * 10);
+        } */
+        class Circle {
+            constructor(x,y,r) {
+                this.x = x;
+                this.y = y;
+                this.r = r;
+            }
+
+            static min = 25;
+            static max = 125;
+
+            testX() {
+                if(this.x < 0) {
+                    this.x = width; 
+                    return;
+                }
+                if(this.x > width) {
+                    this.x = 0;
+                    return;
+                }
+            }
+            
+            testY() {
+                if(this.y < 0) {
+                    this.y = height; 
+                    return;
+                }
+                if(this.y > height) {
+                    this.y = 0;
+                    return;
+                }
+            }
+
+            testR() {
+                if(this.r < Circle.min) {
+                    this.r = Circle.min;
+                    return;
+                }
+                if(this.r > Circle.max) {
+                    this.r = Circle.max;
+                    return;
+                }
+            }
+        }
+        let f = 0;
+        let ps = [];
+        function setup() {
+            createCanvas(window.innerWidth, window.innerHeight);
+            background(200, 100);
+            color1 = `rgb(${Math.ceil(Math.random()*255)},${Math.ceil(Math.random()*255)},${Math.ceil(Math.random()*255)})`;
+            color2 = `rgb(${Math.ceil(Math.random()*255)},${Math.ceil(Math.random()*255)},${Math.ceil(Math.random()*255)})`;
+        }
+        function draw() {
+            f++;
+            background(200, 10);
+            for(let p of ps) {
+                p.x += random(-5,5);
+                p.y += random(0,15);
+                p.r += random(-5,5);
+                p.testX();
+                p.testY();
+                p.testR();
+                if(p.x > width/2) {
+                    fill(color1);
+                    stroke(color2);
+                } else {
+                    fill(color2);
+                    stroke(color1);
+                }
+                circle(p.x, p.y, p.r);
+            }
+        }
+        function mousePressed() {
+            let x = mouseX;
+            let y = mouseY;
+            ps.push(new Circle(mouseX, mouseY, random(Circle.min,Circle.max)));
+        }
+        /* let f = 0;
+        let ps = [];
+        function setup() {
+            createCanvas(window.innerWidth, window.innerHeight);
+            background(255);
+        }
+        function draw() {
+            f++;
+            background(255,5);
+            fill(`rgb(0,0,255)`);
+            let oscx = sin(f) * 100;
+            let oscy = sin(PI/2+f) * 100;
+            circle(width/2 + oscx,height/2 + oscy,int(width*0.10))
+        } */
+        /* let f = 0;
+        let ps = [];
+        function setup() {
+            createCanvas(window.innerWidth, window.innerHeight);
+            background(255);
+        }
+        function draw() {
+            f++;
+            background(255,5);
+            let x = noise(f/50) * width;
+            let y = noise(1000+f/50) * height;
+            fill(`rgb(0,0,255)`)
+            circle(x,y,100);
+        } */
+    </script>
+</body>
+</html>
